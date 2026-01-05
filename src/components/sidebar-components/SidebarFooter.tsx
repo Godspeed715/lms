@@ -1,5 +1,5 @@
 import { LogOut, User } from "lucide-react";
-import { getInitials } from "@/utilities/getInitials"; // Import the utility function
+import { getInitials } from "@/lib/utilities/getInitials"; // Import the utility function
 import { UseUser } from "@/context/UserContext";
 import { useNavigate } from "react-router-dom";
 
