@@ -92,7 +92,7 @@ export default function LoginPage() {
                   Authenticating...
                 </span>
               ) : (
-                "Login to Dashboard"
+                "Login"
               )}
             </Button>
           </form>
@@ -101,7 +101,7 @@ export default function LoginPage() {
         <p className="text-center text-sm text-green-100 mt-8">
           Don't have an account?{" "}
           <Link to="/" className="font-bold text-white hover:underline">
-            Sign up for free
+            Sign up
           </Link>
         </p>
       </motion.div>
