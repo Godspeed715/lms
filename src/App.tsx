@@ -3,7 +3,7 @@ import LoginPage from "@/pages/LoginPage";
 import "./App.css";
 import SignupPage from "./pages/SignupPage";
 import { HomeLayout } from "./components/home-dashboard-page-components/HomeLayout";
-import DashboardHome from "./pages/HomePage";
+import DashboardHome from "./pages/DashboardHomePage";
 import CourseDetailPage from "./pages/CourseDetailPage";
 
 function App() {
