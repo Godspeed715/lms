@@ -29,7 +29,7 @@ export const CustomFormField = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-gray-300 font-medium">{label}</FormLabel>
+          <FormLabel className="text-green-800 font-medium">{label}</FormLabel>
           <FormControl>
             <Input
               type={type}
@@ -38,7 +38,7 @@ export const CustomFormField = ({
               className="bg-white text-black border-none focus:ring-blue-500 h-12" // h-12 for better touch targets
             />
           </FormControl>
-          <FormMessage className="text-red-400 font-bold pt-2" />
+          <FormMessage className="text-red-600 font-bold pt-2" />
         </FormItem>
       )}
     />
