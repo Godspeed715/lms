@@ -80,7 +80,7 @@ export default function SignupPage() {
 
             <Button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-800 h-12 text-base font-medium mt-4"
+              className="w-full bg-blue-500 hover:bg-blue-800 h-12 text-base font-medium mt-4 text-white"
             >
               Register
             </Button>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CustomFormField } from "@/components/CustomFormField";
 import { Form } from "@/components/ui/form";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 //validation schema
 const loginSchema = z.object({
@@ -37,8 +38,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-white/55 flex justify-center items-center py-20">
-      <div className="bg-green-900 p-12 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-white mb-6 text-center">
+      <div className="bg-green-400 p-12 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold text-white mb-10 text-center">
           Welcome Back
         </h2>
 
@@ -66,13 +67,23 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 pt-5 pb-5 rounded transition duration-300 mt-2"
+              className="w-full bg-blue-500 hover:bg-blue-800 text-white font-bold py-3 px-4 pt-5 pb-5 rounded transition duration-300 mt-2 text-base"
               onClick={form.handleSubmit(onSubmit)}
             >
               {isLoading ? "Logging in..." : "Login"}
             </Button>
           </form>
         </Form>
+
+        <p className="text-center text-sm text-slate-600 mt-8">
+          Don't have an account?{" "}
+          <Link
+            to="/signup"
+            className="font-semibold text-slate-900 hover:underline"
+          >
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );
