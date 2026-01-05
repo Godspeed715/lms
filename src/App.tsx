@@ -6,18 +6,21 @@ import { HomeLayout } from "./components/home-dashboard-page-components/HomeLayo
 import DashboardHome from "./pages/DashboardHomePage";
 import CourseDetailPage from "./pages/CourseDetailPage";
 import SettingsPage from "./pages/SettingsPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route index element={<SignupPage />} />
 
-        <Route path="/dashboard" element={<HomeLayout />}>
-          <Route index element={<DashboardHome />} />
-          <Route path="courses/:courseId" element={<CourseDetailPage />} />
-          <Route path="settings" element={<SettingsPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<HomeLayout />}>
+            <Route index element={<DashboardHome />} />
+            <Route path="courses/:courseId" element={<CourseDetailPage />} />
+            <Route path="settings" element={<SettingsPage />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<div>404 Not Found</div>} />

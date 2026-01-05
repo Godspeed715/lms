@@ -6,6 +6,7 @@ import { CustomFormField } from "@/components/CustomFormField";
 import { Form } from "@/components/ui/form";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //validation schema
 const loginSchema = z.object({
@@ -14,6 +15,7 @@ const loginSchema = z.object({
 });
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   //initialize the form
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -68,6 +70,10 @@ export default function LoginPage() {
               type="submit"
               disabled={isLoading}
               className="w-full bg-blue-500 hover:bg-blue-800 text-white font-bold py-3 px-4 pt-5 pb-5 rounded transition duration-300 mt-2 text-base"
+              onClick={() => {
+                form.handleSubmit(onSubmit);
+                navigate("/dashboard");
+              }}
             >
               {isLoading ? "Logging in..." : "Login"}
             </Button>
@@ -76,10 +82,7 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-slate-600 mt-8">
           Don't have an account?{" "}
-          <Link
-            to="/signup"
-            className="font-semibold text-slate-900 hover:underline"
-          >
+          <Link to="/" className="font-semibold text-slate-900 hover:underline">
             Sign up
           </Link>
         </p>

@@ -7,8 +7,13 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { User, Lock, Bell, ShieldCheck } from "lucide-react";
+import { useUser } from "@/context/UserContext";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 export default function SettingsPage() {
+  const { user } = useUser();
+
   return (
     <div className="p-8 space-y-8 bg-slate-50 min-h-screen">
       <div>
@@ -36,16 +41,20 @@ export default function SettingsPage() {
                   <label className="text-xs font-bold uppercase text-slate-400">
                     Full Name
                   </label>
-                  <p className="text-sm font-medium p-2 bg-slate-50 rounded border border-slate-100">
-                    John Doe
+
+                  {/* 3. Display actual name */}
+                  <p className="text-sm font-medium p-2 bg-slate-50 rounded border border-slate-100 min-h-[40px]">
+                    {user?.name || "No name provided"}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <label className="text-xs font-bold uppercase text-slate-400">
                     Email Address
                   </label>
-                  <p className="text-sm font-medium p-2 bg-slate-50 rounded border border-slate-100">
-                    john.doe@university.edu
+
+                  {/* 4. Display actual email */}
+                  <p className="text-sm font-medium p-2 bg-slate-50 rounded border border-slate-100 min-h-[40px]">
+                    {user?.email || "No email provided"}
                   </p>
                 </div>
               </div>
@@ -93,27 +102,38 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-slate-600">Email Notifications</span>
-                <div className="w-10 h-5 bg-blue-600 rounded-full flex items-center px-1">
+                <Label
+                  htmlFor="email-notifications"
+                  className="text-sm font-medium text-slate-600"
+                >
+                  Email Notifications
+                </Label>
+                <Switch id="email-notifications" />
+                <div className="w-10 h-5 bg-blue-600 rounded-full flex items-center px-1 cursor-pointer">
                   <div className="bg-white h-3 w-3 rounded-full ml-auto" />
                 </div>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-slate-600">Course Deadlines</span>
-                <div className="w-10 h-5 bg-slate-300 rounded-full flex items-center px-1">
+                <Label
+                  htmlFor="course-deadlines"
+                  className="text-sm font-medium text-slate-600"
+                >
+                  Course Deadlines
+                </Label>
+                <Switch id="course-deadlines" />
+                <div className="w-10 h-5 bg-slate-300 rounded-full flex items-center px-1 cursor-pointer">
                   <div className="bg-white h-3 w-3 rounded-full" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
+          {/* Account Status Card */}
           <Card className="bg-blue-600 text-white border-none shadow-lg">
             <CardContent className="p-6 text-center space-y-3">
               <ShieldCheck className="h-12 w-12 mx-auto opacity-50" />
-              <h3 className="font-bold">Account Verification</h3>
-              <p className="text-xs text-blue-100">
-                Your student account is verified and secure.
-              </p>
+              <h3 className="font-bold text-lg">Account Verified</h3>
+              <p className="text-xs text-blue-100">Checked and Honored</p>
             </CardContent>
           </Card>
         </div>
