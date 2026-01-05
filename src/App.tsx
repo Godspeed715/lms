@@ -5,6 +5,7 @@ import SignupPage from "./pages/SignupPage";
 import { HomeLayout } from "./components/home-dashboard-page-components/HomeLayout";
 import DashboardHome from "./pages/DashboardHomePage";
 import CourseDetailPage from "./pages/CourseDetailPage";
+import SettingsPage from "./pages/SettingsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<HomeLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="courses/:courseId" element={<CourseDetailPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
 
         <Route path="*" element={<div>404 Not Found</div>} />

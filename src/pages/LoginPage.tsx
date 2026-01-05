@@ -68,7 +68,6 @@ export default function LoginPage() {
               type="submit"
               disabled={isLoading}
               className="w-full bg-blue-500 hover:bg-blue-800 text-white font-bold py-3 px-4 pt-5 pb-5 rounded transition duration-300 mt-2 text-base"
-              onClick={form.handleSubmit(onSubmit)}
             >
               {isLoading ? "Logging in..." : "Login"}
             </Button>

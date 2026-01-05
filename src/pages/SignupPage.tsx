@@ -6,7 +6,8 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { CustomFormField } from "@/components/CustomFormField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "@/context/UserContext";
 
 // Validation schema with Password Matching
 const signupSchema = z
@@ -22,13 +23,22 @@ const signupSchema = z
   });
 
 export default function SignupPage() {
+  const { login } = useUser();
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
   });
 
   function onSubmit(values: z.infer<typeof signupSchema>) {
-    console.log("Signup Data:", values);
+    console.log("Signup Data:", values.email, values.name);
+
+    // Send data to Global Memory until backend is ready
+    login({ email: values.email, name: values.name });
+
+    // Redirect to Dashboard
+    navigate("/dashboard");
   }
 
   return (
