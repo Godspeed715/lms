@@ -1,4 +1,4 @@
-import { User } from "lucide-react";
+import { User as UserIcon } from "lucide-react";
 import { UseUser } from "@/context/UserContext";
 import {
   Card,
@@ -23,7 +23,7 @@ export default function Profile() {
       <Card className="border-none shadow-sm bg-white">
         <CardHeader className="border-b border-slate-50">
           <CardTitle className="text-lg font-bold text-green-900 flex items-center gap-2">
-            <User className="h-5 w-5 text-blue-600" /> Public Profile
+            <UserIcon className="h-5 w-5 text-blue-600" /> Public Profile
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-6 space-y-4">
@@ -33,7 +33,9 @@ export default function Profile() {
                 Full Name
               </Label>
               <p className="text-sm font-medium p-3 bg-slate-50 rounded-md border border-slate-100 min-h-11 flex items-center text-slate-700">
-                {user?.name || "No name provided"}
+                {user?.user_metadata?.full_name ||
+                  user?.email ||
+                  "No name provided"}
               </p>
             </div>
             <div className="space-y-1.5">
