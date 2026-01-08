@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { animations } from "@/lib/animations";
 import { UseUser } from "@/context/UserContext"; // Correct hook usage
+import { SocialAuth } from "@/components/SocialAuth";
 
 const signupSchema = z
   .object({
@@ -51,7 +52,10 @@ export default function SignupPage() {
       );
       navigate("/login");
     } catch (error: Error | unknown) {
-      const message = error instanceof Error ? error.message : "An error occurred during signup";
+      const message =
+        error instanceof Error
+          ? error.message
+          : "An error occurred during signup";
       alert(message);
     } finally {
       setIsLoading(false);
@@ -70,7 +74,7 @@ export default function SignupPage() {
           <h2 className="text-3xl font-bold text-white">Create Account</h2>
           <p className="text-green-100 text-sm mt-2">Join our community</p>
         </div>
-
+        <SocialAuth />
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

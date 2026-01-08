@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UseUser } from "@/context/UserContext"; // Standardized naming
 import { motion } from "framer-motion";
 import { animations } from "@/lib/animations";
+import { SocialAuth } from "@/components/SocialAuth";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -63,7 +64,7 @@ export default function LoginPage() {
             Enter your details to access your courses
           </p>
         </div>
-
+        <SocialAuth />
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

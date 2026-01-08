@@ -10,8 +10,9 @@ interface UserContextType {
   isLoading: boolean;
   login: (credentials: SignInWithPasswordCredentials) => Promise<void>;
   logout: () => Promise<void>;
-  // 1. ADDED TO INTERFACE: Tell TypeScript signUp exists
+  //Added method signup
   signUp: (email: string, pass: string, fullName: string) => Promise<void>;
+  signInWithSocial: (provider: "google" | "twitter") => Promise<void>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -41,7 +42,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     if (error) throw error;
   };
 
-  // 2. IMPLEMENTATION: The actual Supabase call
   const signUp = async (email: string, pass: string, fullName: string) => {
     const { error } = await supabase.auth.signUp({
       email,
@@ -56,13 +56,25 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     if (error) throw error;
   };
 
+  const signInWithSocial = async (provider: "google" | "twitter") => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: window.location.origin + "/dashboard",
+      },
+    });
+    if (error) throw error;
+  };
+
   const logout = async () => {
     await supabase.auth.signOut();
   };
 
   return (
     // 3. ADDED TO PROVIDER VALUE: Pass it down to components
-    <UserContext.Provider value={{ user, isLoading, login, logout, signUp }}>
+    <UserContext.Provider
+      value={{ user, isLoading, login, logout, signUp, signInWithSocial }}
+    >
       {children}
     </UserContext.Provider>
   );
