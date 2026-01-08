@@ -13,6 +13,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Build
+        run: npm run build
+        env:
+          # This pulls the secrets you just saved and gives them to Vite
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       - name: Checkout code
         uses: actions/checkout@v4
 
